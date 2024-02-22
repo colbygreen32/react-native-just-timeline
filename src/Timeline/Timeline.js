@@ -34,7 +34,7 @@ const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle, lineProps })
   return (
     <View style={[styles.iconContainer, iconStyle]}>
       {iconToBeRendered}
-      <LinearGradient colors={["black"]} style={{ width: 10, height: 200 }}  {...lineProps}></LinearGradient>
+      <LinearGradient colors={["black"]} style={{ width: 10, height: 200 }} locations={[1]}  {...lineProps}></LinearGradient>
     </View>
   );
 };
