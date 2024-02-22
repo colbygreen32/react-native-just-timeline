@@ -36,6 +36,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^3.1.0",
+    "react-native-linear-gradient": "^2.8.3",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "metro-react-native-babel-preset": "0.58.0",

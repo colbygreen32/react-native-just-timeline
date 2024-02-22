@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import _isEmpty from "lodash/isEmpty";
+import { LinearGradient } from "expo-linear-gradient";
 
 import styles from "./Timeline.style";
 
@@ -13,7 +14,7 @@ const EventTime = ({ time: { content, style: timeStyle } = {}, style }) => {
   );
 };
 
-const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle, line }) => {
+const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle, lineProps }) => {
   // Determines whether we are trying to render a custom icon component, or use the default
   const iconIsComponent = typeof OriginalIcon === "function";
   let iconToBeRendered = iconIsComponent ? (
@@ -33,7 +34,7 @@ const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle, line }) => {
   return (
     <View style={[styles.iconContainer, iconStyle]}>
       {iconToBeRendered}
-      {line || <View style={[styles.verticalLine, lineStyle]} />}
+      <LinearGradient colors={["black", "white"]} style={{ width: 30, height: 500 }} locations={[0.5, 0.5]} {...lineProps}></LinearGradient>
     </View>
   );
 };
@@ -57,7 +58,7 @@ const Row = ({
   timeContainerStyle,
   iconContainerStyle,
   lineStyle,
-  line,
+  lineProps,
   contentContainerStyle
 }) => {
   const {
@@ -102,7 +103,7 @@ const Row = ({
     <RowComp style={[styles.row, eventStyle]} onPress={pressAction}>
       <EventTime time={time} style={timeContainerStyle} />
       <EventIcon
-        line={line}
+        lineProps={lineProps}
         icon={icon}
         iconStyle={iconContainerStyle}
         lineStyle={lineStyle}
@@ -126,7 +127,7 @@ const Timeline = ({
   onEndReached,
   TimelineFooter,
   TimelineHeader,
-  line = null,
+  lineProps,
   ...rest
 }) => {
   const events = (
@@ -139,7 +140,7 @@ const Timeline = ({
           timeContainerStyle={timeContainerStyle}
           iconContainerStyle={iconContainerStyle}
           lineStyle={lineStyle}
-          line={line}
+          lineProps={lineProps}
           contentContainerStyle={contentContainerStyle}
         />
       )}
