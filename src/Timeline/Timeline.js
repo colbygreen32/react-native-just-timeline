@@ -13,7 +13,7 @@ const EventTime = ({ time: { content, style: timeStyle } = {}, style }) => {
   );
 };
 
-const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle }) => {
+const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle, line }) => {
   // Determines whether we are trying to render a custom icon component, or use the default
   const iconIsComponent = typeof OriginalIcon === "function";
   let iconToBeRendered = iconIsComponent ? (
@@ -33,7 +33,7 @@ const EventIcon = ({ icon: OriginalIcon = {}, iconStyle, lineStyle }) => {
   return (
     <View style={[styles.iconContainer, iconStyle]}>
       {iconToBeRendered}
-      <View style={[styles.verticalLine, lineStyle]} />
+      {line || <View style={[styles.verticalLine, lineStyle]} />}
     </View>
   );
 };
@@ -57,6 +57,7 @@ const Row = ({
   timeContainerStyle,
   iconContainerStyle,
   lineStyle,
+  line,
   contentContainerStyle
 }) => {
   const {
@@ -101,6 +102,7 @@ const Row = ({
     <RowComp style={[styles.row, eventStyle]} onPress={pressAction}>
       <EventTime time={time} style={timeContainerStyle} />
       <EventIcon
+        line={line}
         icon={icon}
         iconStyle={iconContainerStyle}
         lineStyle={lineStyle}
@@ -124,6 +126,7 @@ const Timeline = ({
   onEndReached,
   TimelineFooter,
   TimelineHeader,
+  line = null,
   ...rest
 }) => {
   const events = (
@@ -136,6 +139,7 @@ const Timeline = ({
           timeContainerStyle={timeContainerStyle}
           iconContainerStyle={iconContainerStyle}
           lineStyle={lineStyle}
+          line={line}
           contentContainerStyle={contentContainerStyle}
         />
       )}
