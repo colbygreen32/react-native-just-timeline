@@ -58,7 +58,6 @@ const Row = ({
   timeContainerStyle,
   iconContainerStyle,
   lineStyle,
-  lineProps,
   contentContainerStyle
 }) => {
   const {
@@ -66,7 +65,8 @@ const Row = ({
     description: OriginalDescription = {},
     time,
     icon,
-    pressAction
+    pressAction,
+    lineProps
   } = event;
 
   // Determines whether or not the Row is clickable, and acts accordingly
@@ -140,7 +140,6 @@ const Timeline = ({
           timeContainerStyle={timeContainerStyle}
           iconContainerStyle={iconContainerStyle}
           lineStyle={lineStyle}
-          lineProps={lineProps}
           contentContainerStyle={contentContainerStyle}
         />
       )}
