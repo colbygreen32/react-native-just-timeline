@@ -58,7 +58,8 @@ const Row = ({
   timeContainerStyle,
   iconContainerStyle,
   lineStyle,
-  contentContainerStyle
+  contentContainerStyle,
+  activeOpacity,
 }) => {
   const {
     title: OriginalTitle = {},
@@ -100,7 +101,7 @@ const Row = ({
   );
 
   return (
-    <RowComp style={[styles.row, eventStyle]} onPress={pressAction}>
+    <RowComp style={[styles.row, eventStyle]} onPress={pressAction} activeOpacity={activeOpacity}>
       <EventTime time={time} style={timeContainerStyle} />
       <EventIcon
         lineProps={lineProps}
@@ -128,6 +129,7 @@ const Timeline = ({
   TimelineFooter,
   TimelineHeader,
   lineProps,
+  activeOpacity,
   ...rest
 }) => {
   const events = (
@@ -141,6 +143,7 @@ const Timeline = ({
           iconContainerStyle={iconContainerStyle}
           lineStyle={lineStyle}
           contentContainerStyle={contentContainerStyle}
+          activeOpacity={activeOpacity}
         />
       )}
       keyExtractor={(_, ndx) => ndx.toString()}
