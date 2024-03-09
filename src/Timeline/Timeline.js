@@ -6,10 +6,10 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import styles from "./Timeline.style";
 
-const EventTime = ({ time: { content, style: timeStyle } = {}, style }) => {
+const EventTime = ({ time, style }) => {
   return (
     <View style={[styles.timeContainer, style]}>
-      <Text style={[styles.time, timeStyle]}>{content}</Text>
+      {time.map(({content, style: timeStyle}) => <Text style={[styles.time, timeStyle]}>{content}</Text>)}
     </View>
   );
 };
