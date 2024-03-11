@@ -9,7 +9,7 @@ import styles from "./Timeline.style";
 const EventTime = ({ time, style }) => {
   return (
     <View style={[styles.timeContainer, style]}>
-      {time.map(({content, style: timeStyle}) => <Text style={[styles.time, timeStyle]}>{content}</Text>)}
+      {time.map(({content, style: timeStyle}, index) => <Text key={index} style={[styles.time, timeStyle]}>{content}</Text>)}
     </View>
   );
 };
